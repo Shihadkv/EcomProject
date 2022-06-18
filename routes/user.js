@@ -437,7 +437,7 @@ router.get('/verification', (req, res) => {
 
 router.post('/verification', (req, res) => {
   otpverify(req.body, req.session.otp, req.session.user).then((response) => {
-
+   console.log(response,"its response");
     res.redirect('/login')
   }).catch((error) => {
     console.log(error.msg);
