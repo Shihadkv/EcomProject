@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zxx">
+
+<head>
+  <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+  <!-- animate CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/animate.css">
+  <!-- owl carousel CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/owl.carousel.min.css">
+  <!-- font awesome CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/all.css">
+  <!-- flaticon CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/flaticon.css">
+  <link rel="stylesheet" href="/stylesheets/css/themify-icons.css">
+  <!-- font awesome CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/magnific-popup.css">
+  <!-- swiper CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/slick.css">
+  <!-- style CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/style.css">
+</head>
+
+<body>
+  <!--::header part start::-->
+  {{>user-navbar}}
+  <!-- Header part end-->
+
+  <!--================Home Banner Area =================-->
+  <!-- breadcrumb start-->
+  <section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <h2>Producta Checkout</h2>
+              <p>Home <span>-</span> Shop Single</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb start-->
+
+  <!--================Checkout Area =================-->
+  <section class="checkout_area padding_top">
+    <div class="container">
+      <div class="returning_customer">
+
+
+
+        <div class="cupon_area">
+          <div class="check_title">
+            <h2>
+              Have a coupon?
+              <a href="#">Click here to enter your code</a>
+            </h2>
+          </div>
+          <input type="text" placeholder="Enter coupon code" />
+          <a class="tp_btn" href="#">Apply Coupon</a>
+        </div>
+        <div class="billing_details">
+          <div class="row">
+            <div class="col-lg-8">
+              <h3>Billing Details</h3>
+              <form class="row contact_form " method="post" id="checkoutform" novalidate="novalidate">
+                <div class="col-md-6 form-group p_star">
+                  <label for="">Fiirstname</label>
+                  <input type="text" class="form-control" id="first" name="firstname" value="{{address.firstName}}" />
+                  {{!-- <span class="placeholder" placeholder="First name"></span> --}}
+                </div>
+                <div class="col-md-6 form-group p_star">
+                  <label for="">Last Name</label>
+                  <input type="text" class="form-control" id="last" name="lastname" value="{{address.lastName}}" />
+                  {{!-- <span class="placeholder" placeholder="Last name"></span> --}}
+                </div>
+                <div class="col-md-12 form-group">
+                  <label for="">companyName</label>
+                  <input type="text" class="form-control" id="company" name="company" placeholder="Company name"
+                    value="{{address.companyName}}" />
+                </div>
+                <div class="col-md-6 form-group p_star">
+                  <label for="">Mob Number</label>
+                  <input type="text" class="form-control" id="number" name="number" value="{{address.phoneNumber}}" />
+                  {{!-- <span class="placeholder" placeholder="Phone number"></span> --}}
+                </div>
+                <div class="col-md-6 form-group p_star">
+                  <label for="">Counrty</label>
+                  <input type="text" class="form-control" id="country" name="countryName" value="{{address.counrty}}" />
+                  {{!-- <span class="placeholder" placeholder="Counrty"></span> --}}
+                </div>
+                <div class="col-md-6 form-group p_star">
+                  <label for="">HouseName</label>
+                  <input type="text" class="form-control" id="house" name="houseName" value="{{address.houseName}}" />
+                  {{!-- <span class="placeholder" placeholder="HouseName"></span> --}}
+                </div>
+
+                <div class="col-md-12 form-group p_star">
+                  <label for="">Nearest Landmark</label>
+                  <input type="text" class="form-control" id="add1" name="landmark" value="{{address.landMark}}" />
+                  {{!-- <span class="placeholder" placeholder="Nearest Landmark"></span> --}}
+                </div>
+                <div class="col-md-12 form-group p_star">
+                  <label for="">Village</label>
+                  <input type="text" class="form-control" id="add2" name="village" value="{{address.village}}" />
+                  {{!-- <span class="placeholder" placeholder="Village"></span> --}}
+                </div>
+                <div class="col-md-6 form-group p_star">
+                  <label for="">District</label>
+                  <input type="text" class="form-control" id="district" name="districts" value="{{address.district}}" />
+                  {{!-- <span class="placeholder" placeholder="District"></span> --}}
+                </div>
+                <div class="col-md-12 form-group p_star">
+                  <label for="">city</label>
+                  <input type="text" class="form-control" id="city" name="city" value="{{address.city}}" />
+                  {{!-- <span class="placeholder" placeholder="Town/City"></span> --}}
+                </div>
+                <div class="col-md-12 form-group">
+                  <label for="">Postcode/ZIP</label>
+                  <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP"
+                    value="{{address.postal}}" />
+                </div>
+                <div class="col-md-12 form-group">
+                  <div class="creat_account">
+                    <input type="checkbox" id="f-option2" name="selector" />
+                    <label for="f-option2">Create an account?</label>
+                  </div>
+                </div>
+                <div class="col-md-12 form-group">
+                  <div class="creat_account">
+                    <h3>Shipping Details</h3>
+                    <input type="checkbox" id="f-option3" name="selector" />
+                    <label for="f-option3">Ship to a different address?</label>
+                  </div>
+                  <textarea class="form-control" name="message" id="message" rows="1"
+                    placeholder="Order Notes"></textarea>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+              <div class="order_box">
+                <h2>Your Order</h2>
+                <ul class="list">
+                  <li>
+                    <a href="#">Product
+                      <span>Total</span>
+                    </a>
+                  </li>
+                  {{#each data.product}}
+                  <li>
+                    <a href="#">{{this.name}}
+                      <span class="middle">* {{this.quantity}}</span>
+                      <span class="last">Rs. {{this.subtotal}}</span>
+                    </a>
+                  </li>
+                  {{/each}}
+
+                </ul>
+                <ul class="list list_2">
+                  <li>
+                    <a href="#">Subtotal
+                      <span>{{data.total}}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">Discounts
+                      <span>-{{discounts.discount}}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">Total
+                      <span>Rs. {{discounts.discountedprice}}</span>
+                    </a>
+                  </li>
+                </ul>
+                <div class="payment_item">
+                  <div class="radion_btn">
+                    <input type="radio" id="f-option5" value="COD" name="paymentMethod" >
+                    <label for="f-option5">COD</label>
+                    <div class="check"></div>
+                  </div>
+                  <p>
+                    Please send a check to Store Name, Store Street, Store Town,
+                    Store State / County, Store Postcode.
+                  </p>
+                </div>
+                <div class="payment_item active">
+                 
+                  <div class="radion_btn">
+                    <input type="radio" id="f-option6" value="Razopay" name="paymentMethod" >
+                    <label for="f-option6">Razopay </label>
+                    <img src="img/product/single-product/card.jpg" alt="" />
+                    <div class="check"></div>
+                  </div>
+                  <p>
+                    Please send a check to Store Name, Store Street, Store Town,
+                    Store State / County, Store Postcode.
+                  </p>
+                </div>
+                <div class="creat_account">
+                  <input type="checkbox" id="f-option4" name="selector" />
+                  <label for="f-option4">I’ve read and accept the </label>
+                  <a href="#">terms & conditions*</a>
+                </div>
+                <button class="btn_3" type="submit">
+                  Proceed to payment
+                </button>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!--================End Checkout Area =================-->
+
+  <!--::footer_part start::-->
+  {{>footer}}
+  <!--::footer_part end::-->
+
+  <!-- jquery plugins here-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="/javascripts/script.js"></script>
+
+  <!-- jquery plugins here-->
+  <script src="/javascripts/jquery-1.12.1.min.js"></script>
+  <!-- popper js -->
+  <script src="/javascripts/popper.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="/javascripts/bootstrap.min.js"></script>
+  <!-- easing js -->
+  <script src="/javascripts/jquery.magnific-popup.js"></script>
+  <!-- swiper js -->
+  <script src="/javascripts/swiper.min.js"></script>
+  <!-- swiper js -->
+  <script src="/javascripts/masonry.pkgd.js"></script>
+  <!-- particles js -->
+  <script src="/javascripts/owl.carousel.min.js"></script>
+  <script src="/javascripts/jquery.nice-select.min.js"></script>
+  <!-- slick js -->
+  <script src="/javascripts/slick.min.js"></script>
+  <script src="/javascripts/jquery.counterup.min.js"></script>
+  <script src="/javascripts/waypoints.min.js"></script>
+  {{!--
+  <script src="/javascripts/contact.js"></script> --}}
+  <script src="/javascripts/jquery.ajaxchimp.min.js"></script>
+  <script src="/javascripts/jquery.form.js"></script>
+  <script src="/javascripts/jquery.validate.min.js"></script>
+  <script src="/javascripts/mail-script.js"></script>
+  <!-- custom js -->
+  <script src="/javascripts/custom.js"></script>
+</body>
+
+</html>

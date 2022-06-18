@@ -1,0 +1,330 @@
+{{!-- <section id="header">
+    <a href="#"><img src="images/img/logo.png" class="logo" alt=""></a>
+        <link rel="stylesheet" href="/stylesheets/button.css">
+    <div>
+        <ul id="navbar">
+            <li><a class="active" href="/index.hbs">Home</a></li>
+            <li><a class="active" href="/productShow">shop</a></li>
+            <li><a class="active" href="/blog.hbs">Blog</a></li>
+            <li><a class="active" href="/about.hbs">About</a></li>
+            <li><a class="active" href="/contact.hbs">Contact</a></li>
+            <li><a class="active" href="/cart"><i class="fa-solid fa-bag-shopping">
+                        <span class="badge badge-light" style="color: black;" id="cart-count">{{cartCount}}</span>
+                    </i> </a></li>
+            <li>
+               
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{#if user}}
+                        {{user.email}}
+                        {{else}}
+                        Account
+                        {{/if}}
+
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {{#if user}}
+                        <a class="dropdown-item" href="/logout">logout</a>
+                        {{else}}
+                        <a class="dropdown-item" href="/login">login</a>
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</section>
+<section id="hero">
+    <h4>Trade-in-offer</h4>
+    <h2>Super value details</h2>
+    <h1>On all Products</h1>
+    <p>Save more with coupons & up to 70% off</p>
+    <button>SHOP NOW</button>
+</section>
+
+
+<section id="feature" class="section-p1">
+
+    <div class="fe-box">
+        <img src="images/img/features/f1.png" alt="">
+        <h6>Free Shipping</h6>
+    </div>
+    <div class="fe-box">
+        <img src="images/img/features/f2.png" alt="">
+        <h6>Online Orders</h6>
+    </div>
+    <div class="fe-box">
+        <img src="images/img/features/f3.png" alt="">
+        <h6>Save Money</h6>
+    </div>
+    <div class="fe-box">
+        <img src="images/img/features/f4.png" alt="">
+        <h6>Promotions</h6>
+    </div>
+    <div class="fe-box">
+        <img src="images/img/features/f5.png" alt="">
+        <h6>Happy Sell</h6>
+    </div>
+    <div class="fe-box">
+        <img src="images/img/features/f6.png" alt="">
+        <h6>24/7 support</h6>
+    </div>
+</section>
+
+
+<section id="product1" class="section-p1">
+    <h2>Featured Products</h2>
+    <p>summer Collection newModern Design</p>
+    <div class="pro-container">
+        {{#each data}}
+        <div class="pro">
+            <a href="/productShow/{{this._id}}"><img src="/uploads/{{this.images.[0].img1}}" alt=""></a>
+
+            <div class="des">
+                <span>{{this.productName}}</span>
+                <h5>{{this.description}}</h5>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h4>{{this.price}}</h4>
+                {{#if error}}
+                <p>{{error}}</p>
+                {{/if}}
+
+            </div>
+            {{!-- <a name="id" href="/AddtoCart/{{this._id}}"  ><i class="fa-solid fa-cart-shopping cart"></i></a> --}}
+            {{!-- <button onclick="addingToCart('{{this._id}}')" class="button-70">Add to Cart</button>
+
+        </div>
+
+        {{/each }} --}}
+    
+
+{{!-- 
+</section>
+
+
+<section id="banner" class="section-m1">
+    <h4>Repair services</h4>
+    <h2>Up to <span>50% off</span> - all Love You by Shihad</h2>
+    <button class="normal">Explore more</button>
+
+</section>
+ --}}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fashi | Template</title> -
+
+    <!-- Google Font -->
+     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet"> --}}
+     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> 
+
+    <!-- Css Styles -->
+    -- <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/css/style.css" type="text/css">
+</head>
+ 
+
+{{>userpartials}} --}}
+    <!-- Header End -->
+
+    <!-- Hero Section Begin -->
+     <section class="hero-section">
+        <div class="hero-items owl-carousel">
+            <div class="single-hero-items set-bg" data-setbg="img/hero-1.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Bag,kids</span>
+                            <h1>Black friday</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore</p>
+                            <a href="#" class="primary-btn">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>Sale <span>50%</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="img/hero-2.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Bag,kids</span>
+                            <h1>Black friday</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore</p>
+                            <a href="#" class="primary-btn">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>Sale <span>50%</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Banner Section Begin -->
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/banner-1.jpg" alt="">
+                        <div class="inner-text">
+                            <h4>Men’s</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/banner-2.jpg" alt="">
+                        <div class="inner-text">
+                            <h4>Women’s</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/banner-3.jpg" alt="">
+                        <div class="inner-text">
+                            <h4>Kid’s</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Section End -->
+
+    <!-- Women Banner Section Begin -->
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="img/products/women-large.jpg">
+                        <h2>Welcome to our store</h2>
+                        <a href="#">Discover More</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="filter-control">
+                        <ul>
+                            <li class="active">Clothings</li>
+                            {{!-- <li>HandBag</li>
+                            <li>Shoes</li>
+                            <li>Accessories</li> --}}
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        {{#each data}}
+                        <div class="product-item">
+                            <div class="pi-pic">
+                               
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                      <button onclick="addingTofav('{{this._id}}')" class="button-70">Add to Fav</button>
+                                      <button onclick="addingToCart('{{this._id}}')" class="button-70">Add to Cart</button> 
+                                    {{<li class="w-icon active"><a name="id" href="/AddtoCart/{{this._id}}"><i class="fa-solid fa-bag-shopping"></i></a></li> --}}
+                                     <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{this.subCategory}}</div>
+                                <a href="#">
+                                    <h5>{{this.name}}</h5>
+                                </a>
+                                <div class="product-price">
+                                     <h5>Rs.{{this.price}}</h5>
+                                    -<span>{{this.discountprice}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Partner Logo Section Begin -->
+    <div class="partner-logo">
+        <div class="container">
+            <div class="logo-carousel owl-carousel">
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-1.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-2.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-3.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-4.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-5.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Partner Logo Section End -->
+
+    <!-- Footer Section Begin -->
+   {{>footer}}
+    <!-- Footer Section End -->
+
+    <!-- js Plugins -->
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/jquery-ui.min.js"></script>
+    <script src="/javascripts/jquery.countdown.min.js"></script>
+    <script src="/javascripts/jquery.nice-select.min.js"></script>
+    <script src="/javascripts/jquery.zoom.min.js"></script>
+    <script src="/javascripts/jquery.dd.min.js"></script>
+    <script src="/javascripts/jquery.slicknav.js"></script>
+    <script src="/javascripts/owl.carousel.min.js"></script>
+    <script src="/javascripts/main.js"></script>
+</body>
+
+</html>
+

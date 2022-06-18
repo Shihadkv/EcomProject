@@ -1,0 +1,354 @@
+<head>
+  <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+  <!-- animate CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/animate.css">
+  <!-- owl carousel CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/owl.carousel.min.css">
+  <!-- font awesome CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/all.css">
+  <!-- flaticon CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/flaticon.css">
+  <link rel="stylesheet" href="/stylesheets/css/themify-icons.css">
+  <!-- font awesome CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/magnific-popup.css">
+  <!-- swiper CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/slick.css">
+  <!-- style CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/style.css">
+</head>
+
+
+<!--::header part start::-->
+
+
+{{>user-navbar}}
+
+<!--================Cart Area =================-->
+<section class="cart_area padding_top mt-4">
+  <div class="container">
+    <h2 class="mb-4">My Cart</h2>
+    <div class="cart_inner">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Product name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+              <th scope="col">Remove</th>
+
+
+
+            </tr>
+          </thead>
+          <tbody id="qty">
+            {{#if product}}
+            {{#each product}}
+
+            <tr>
+              <td>
+                <div class="media">
+                  <div class="d-flex">
+                    <img style="height: 100px;width: 100px;" src="/uploads/{{this.image}}" alt="">
+                  </div>
+                  <div class="media-body">
+                    <p></p>
+                  </div>
+                </div>
+              </td>
+
+              <td>
+                <h5>{{this.name}}</h5>
+              </td>
+              <td>
+                <h5>{{this.price}}</h5>
+              </td>
+              <td>
+
+
+                <div>
+                  <button onclick="decrimentProduct('{{this.productId}}','{{this.quantity}}')" type="button"
+                    class="btn btn-light">- </button>
+
+
+                  <input style="width: 30px;height: 30px;" type="text" id="numform" name="quantity"
+                    placeholder="{{this.quantity}}">
+
+
+
+                  <button type="button" onclick="incrementProduct('{{this.productId}}','{{this.quantity}}')"
+                    class="btn btn-light">+ </button>
+                  {{!-- <button onclick="changeQuantity('{{this.productId}}','{{this.quantity}}',-1)" type="button"
+                    class="btn btn-light">- </button> <span>{{this.quantity}}</span> <button type="button"
+                    onclick="changeQuantity('{{this.productId }}','{{this.quantity}}',1)" class="btn btn-light">+
+                  </button> --}}
+
+                </div>
+
+              </td>
+              <td>
+                <h5>{{this.subtotal}}</h5>
+              </td>
+              <td>
+                <button onclick="deleteItem('{{this.productId}}')" style="border: none;"><i class="fa fa-trash"
+                    aria-hidden="true" style="font-size: 1.5em"></i></button>
+              </td>
+
+            </tr>
+
+            {{/each}}
+
+            {{else}}
+            <style>
+              @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+             
+
+              .mt-100 {
+                margin-top: 100px;
+
+              }
+
+
+              .card {
+                margin-bottom: 30px;
+                border: 0;
+                -webkit-transition: all .3s ease;
+                transition: all .3s ease;
+                letter-spacing: .5px;
+                border-radius: 8px;
+                -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+                box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+              }
+
+              .card .card-header {
+                background-color: #fff;
+                border-bottom: none;
+                padding: 24px;
+                border-bottom: 1px solid #f6f7fb;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+              }
+
+              .card-header:first-child {
+                border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+              }
+
+
+
+              .card .card-body {
+                padding: 30px;
+                background-color: transparent;
+              }
+
+              .btn-primary,
+              .btn-primary.disabled,
+              .btn-primary:disabled {
+                background-color: #4466f2 !important;
+                border-color: #4466f2 !important;
+              }
+            </style>
+            <div style="height: 75vh;" class="container-fluid   mt-100">
+              <div class="row">
+
+                <div class="col-md-12">
+
+                  <div style="width: 50%;margin: auto;" class="card ">
+
+                    <div class="card-body cart">
+                      <div class="col-sm-12 empty-cart-cls text-center">
+                        <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                        <h3><strong>Your Cart is Empty</strong></h3>
+                        <h4>Add something to make me happy :)</h4>
+                        <a href="/shop" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue
+                          shopping</a>
+
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
+
+            </div>
+
+            {{/if}}
+            <tr class="bottom_button">
+              <td>
+                <a class="btn_1" href="#">Update Cart</a>
+              </td>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="cupon_text float-right">
+                  <a class="btn_1" href="#">Close Coupon</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                <h5>SubTotal</h5>
+              </td>
+              <td>
+                <h5>Rs. {{data.total}}</h5>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                <h5>Discounting Amount</h5>
+              </td>
+              <td>
+                <h5>Rs. -{{discounts.discount}}</h5>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                <h5>Total</h5>
+              </td>
+              <td>
+                <h5>Rs. {{discounts.discountedprice}}</h5>
+              </td>
+            </tr>
+
+
+          </tbody>
+        </table>
+        <div class="checkout_btn_inner float-right">
+          <a class="btn_1" href="/">Continue Shopping</a>
+          <a class="btn_1 checkout_btn_1" href="/AddressSub">Proceed to checkout</a>
+        </div>
+      </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->
+
+<!--::footer_part start::-->
+<footer class="footer_part">
+  <div class="container">
+    <div class="row justify-content-around">
+      <div class="col-sm-6 col-lg-2">
+        <div class="single_footer_part">
+          <h4>Top Products</h4>
+          <ul class="list-unstyled">
+            <li><a href="">Managed Website</a></li>
+            <li><a href="">Manage Reputation</a></li>
+            <li><a href="">Power Tools</a></li>
+            <li><a href="">Marketing Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <div class="single_footer_part">
+          <h4>Quick Links</h4>
+          <ul class="list-unstyled">
+            <li><a href="">Jobs</a></li>
+            <li><a href="">Brand Assets</a></li>
+            <li><a href="">Investor Relations</a></li>
+            <li><a href="">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <div class="single_footer_part">
+          <h4>Features</h4>
+          <ul class="list-unstyled">
+            <li><a href="">Jobs</a></li>
+            <li><a href="">Brand Assets</a></li>
+            <li><a href="">Investor Relations</a></li>
+            <li><a href="">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <div class="single_footer_part">
+          <h4>Resources</h4>
+          <ul class="list-unstyled">
+            <li><a href="">Guides</a></li>
+            <li><a href="">Research</a></li>
+            <li><a href="">Experts</a></li>
+            <li><a href="">Agencies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="single_footer_part">
+          <h4>Newsletter</h4>
+          <p>Heaven fruitful doesn't over lesser in days. Appear creeping
+          </p>
+          <div id="mc_embed_signup">
+            <form target="_blank"
+              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+              method="get" class="subscribe_form relative mail_part">
+              <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                onblur="this.placeholder = ' Email Address '">
+              <button type="submit" name="submit" id="newsletter-submit"
+                class="email_icon newsletter-submit button-contactForm">subscribe</button>
+              <div class="mt-10 info"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="copyright_part">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="footer_icon social_icon">
+            <ul class="list-unstyled">
+              <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
+              <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="/javascripts/script.js"></script>
+
+<!-- jquery plugins here-->
+<script src="/javascripts/jquery-1.12.1.min.js"></script>
+<!-- popper js -->
+<script src="/javascripts/popper.min.js"></script>
+<!-- bootstrap js -->
+<script src="/javascripts/bootstrap.min.js"></script>
+<!-- easing js -->
+<script src="/javascripts/jquery.magnific-popup.js"></script>
+<!-- swiper js -->
+<script src="/javascripts/swiper.min.js"></script>
+<!-- swiper js -->
+<script src="/javascripts/masonry.pkgd.js"></script>
+<!-- particles js -->
+<script src="/javascripts/owl.carousel.min.js"></script>
+<script src="/javascripts/jquery.nice-select.min.js"></script>
+<!-- slick js -->
+<script src="/javascripts/slick.min.js"></script>
+<script src="/javascripts/jquery.counterup.min.js"></script>
+<script src="/javascripts/waypoints.min.js"></script>
+{{!--
+<script src="/javascripts/contact.js"></script> --}}
+<script src="/javascripts/jquery.ajaxchimp.min.js"></script>
+<script src="/javascripts/jquery.form.js"></script>
+<script src="/javascripts/jquery.validate.min.js"></script>
+<script src="/javascripts/mail-script.js"></script>
+<!-- custom js -->
+<script src="/javascripts/custom.js"></script>

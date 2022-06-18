@@ -1,0 +1,32 @@
+<script>
+function getAll(proId){
+    let parent = document.getElementById("parent");
+    console.log(parent, "parent")
+    parent.innerHTML="";
+    $.ajax({
+        url:'/users/getAll/'+proId,
+        method:'get',
+        success:(response)=>{
+           let product=response.product;
+          console.log(product, "product");
+          product.forEach((p,i) => {
+            let div = document.createElement('div')
+            let parentDiv =document.createElement('div')
+            parentDiv.setAttribute("class",
+            "col-sm-12 col-md-4")
+            let proName = document.createElement('h6')
+                let prodImg = document.createElement("img");
+            prodImg.src= `/uploads/${p.images[0].img1}`;
+            prodImg.alt=p.brand;
+            proName=p.productName
+            parentDiv.append(prodImg);
+            var lineBreak = document.createElement("br");
+            parentDiv.append(lineBreak)
+            parentDiv.append(proName);
+            parent.append(parentDiv);
+            
+          });
+        }
+    })
+}
+</script>

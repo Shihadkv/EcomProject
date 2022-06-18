@@ -1,0 +1,119 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/owl.carousel.min.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/all.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/flaticon.css">
+    <link rel="stylesheet" href="/stylesheets/css/themify-icons.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/magnific-popup.css">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/slick.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/style.css">
+</head>
+
+{{>user-navbar}}
+
+
+<!--================Cart Area =================-->
+<section class="cart_area padding_top mt-5">
+    <div class="container">
+        <h2 class="mb-4">My Wishlist</h2>
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Product name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if product}}
+                        {{#each product}}
+
+                        <tr>
+                            <td>
+                                <div class="media">
+                                    <div class="d-flex">
+
+                                        <img style="height=" 100px" width="125px"" 
+                                           src=" /uploads/{{this.image}}" alt="">
+                                        {{!-- <img src="img/product/single-product/cart-1.jpg" alt="" /> --}}
+                                    </div>
+                                    <div class="media-body">
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <h5>{{this.name}}</h5>
+                            </td>
+                            <td>
+                                <h5>{{this.price}}</h5>
+                            </td>
+                            <td>
+                                <button onclick="addingToCart('{{this.productId}}')" class="btn_1"
+                                    style="border: none;">+ add to cart</button>
+                            </td>
+                            <td>
+                                <button onclick="deletefav('{{this.productId}}')" style="border: none;"><i
+                                        class="fa fa-trash" aria-hidden="true" style="font-size: 1.5em"></i></button>
+                            </td>
+
+                        </tr>
+
+                        {{/each}}
+                        {{/if}}
+
+
+
+                    </tbody>
+                </table>
+                <div class="checkout_btn_inner float-right">
+                    <a class="btn_1" href="#">Continue Shopping</a>
+                    <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+                </div>
+            </div>
+        </div>
+</section>
+<!--================End Cart Area =================-->
+
+
+
+<script src="/javascripts/script.js"></script>
+
+<!-- jquery plugins here-->
+<script src="/javascripts/jquery-1.12.1.min.js"></script>
+<!-- popper js -->
+<script src="/javascripts/popper.min.js"></script>
+<!-- bootstrap js -->
+<script src="/javascripts/bootstrap.min.js"></script>
+<!-- easing js -->
+<script src="/javascripts/jquery.magnific-popup.js"></script>
+<!-- swiper js -->
+<script src="/javascripts/swiper.min.js"></script>
+<!-- swiper js -->
+<script src="/javascripts/masonry.pkgd.js"></script>
+<!-- particles js -->
+<script src="/javascripts/owl.carousel.min.js"></script>
+<script src="/javascripts/jquery.nice-select.min.js"></script>
+<!-- slick js -->
+<script src="/javascripts/slick.min.js"></script>
+<script src="/javascripts/jquery.counterup.min.js"></script>
+<script src="/javascripts/waypoints.min.js"></script>
+{{!--
+<script src="/javascripts/contact.js"></script> --}}
+<script src="/javascripts/jquery.ajaxchimp.min.js"></script>
+<script src="/javascripts/jquery.form.js"></script>
+<script src="/javascripts/jquery.validate.min.js"></script>
+<script src="/javascripts/mail-script.js"></script>
+<!-- custom js -->
+<script src="/javascripts/custom.js"></script>

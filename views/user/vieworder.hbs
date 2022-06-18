@@ -1,0 +1,335 @@
+<link rel="icon" href="img/favicon.png">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+<!-- animate CSS -->
+<link rel="stylesheet" href="/stylesheets/css/animate.css">
+<!-- owl carousel CSS -->
+<link rel="stylesheet" href="/stylesheets/css/owl.carousel.min.css">
+<!-- font awesome CSS -->
+<link rel="stylesheet" href="/stylesheets/css/all.css">
+<!-- flaticon CSS -->
+<link rel="stylesheet" href="/stylesheets/css/flaticon.css">
+<link rel="stylesheet" href="/stylesheets/css/themify-icons.css">
+<!-- font awesome CSS -->
+<link rel="stylesheet" href="/stylesheets/css/magnific-popup.css">
+<!-- swiper CSS -->
+<link rel="stylesheet" href="/stylesheets/css/slick.css">
+<!-- style CSS -->
+<link rel="stylesheet" href="/stylesheets/css/style.css">
+
+{{>user-navbar}}
+
+<section class="confirmation_part padding_top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="confirmation_tittle">
+          <span>Thank you. Your order has been received.</span>
+        </div>
+      </div>
+       <div class="col-lg-6 col-lx-4">
+        <div class="single_confirmation_details">
+          <h4>Your Order</h4>
+     
+          <ul>
+            <li>
+              <p>Item</p><span>: {{single.obj.name}}</span>
+            </li>
+             <li>
+              <p>Item</p><span>: Rs.{{single.obj.price}}</span>
+            </li>
+            <li>
+              <p>Image</p><span> <img  style="height: 200px; width: 210px;" src="/uploads/{{single.obj.image}}" alt="" /> </span>
+              
+            </li>
+              <li>
+              <p>Quantity</p><span> : {{single.obj.quantity
+                }}</span>
+            </li>
+            <li>
+              <p>SubTotal</p><span> :  Rs.{{single.obj.subTotal
+                }}</span>
+            </li>
+             <li>
+              <p>Date</p><span> : {{single.findpro.modifiedOn
+                }}</span>
+            </li>
+          
+          </ul>
+  
+          
+        </div>
+      </div> 
+       {{!-- <div class="col-lg-6 col-lx-4">
+        <div class="single_confirmation_details">
+          <h4>Billing Address</h4>
+          <ul>
+            <li>
+              <p>Street</p><span>: 56/8</span>
+            </li>
+            <li>
+              <p>city</p><span>: Los Angeles</span>
+            </li>
+            <li>
+              <p>country</p><span>: United States</span>
+            </li>
+            <li>
+              <p>postcode</p><span>: 36952</span>
+            </li>
+          </ul>
+        </div>
+      </div>  --}}
+
+       <div class="col-lg-6 col-lx-4">
+        <div class="single_confirmation_details">
+
+          <h4>shipping Address</h4>
+         
+
+
+          <ul>
+            <li>
+              <p>HouseName</p><span>: {{single.findpro.address.houseName}}</span>
+            </li>
+            <li>
+              <p>city</p><span>: {{single.findpro.address.city}}</span>
+              
+            </li>
+            <li>
+              <p>LandMark</p><span>: {{single.findpro.address.landMark}}</span>
+            </li>
+            <li>
+              <p>postcode</p><span>:{{single.findpro.address.postal}}</span> 
+             
+            </li>
+             <li>
+              <p>City</p><span>:{{single.findpro.address.city}}</span> 
+             
+            </li>
+             <li>
+              <p>Pyment Method</p><span>:{{single.findpro.address.paymentMethod}}</span> 
+             
+            </li>
+             <li>
+              <p>Mob number</p><span>:{{single.findpro.address.phoneNumber}}</span> 
+             
+            </li>
+             <li>
+              <p>postcode</p><span>:{{single.findpro.address.postal}}</span> 
+             
+            </li>
+          </ul>
+
+          
+        </div>
+
+        {{#if single.obj.active}}
+        <button id="cancel" class="btn btn-danger" style="margin-top: 10px;" onclick="cancel('{{single.obj._id}}')" >cancel Order</button>
+		{{else}}
+		        <button class="btn btn-primary" style="margin-top: 10px;" onclick="deleteOrd('{{single.obj._id}}')" > order canceled</button>
+        {{/if}}
+      </div> 
+      
+
+    </div>
+    {{!-- <div class="row">
+      <div class="col-lg-12">
+        <div class="order_details_iner">
+          <h3>Order Details</h3>
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col" colspan="2">Product</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              {{!-- {{#each singleproduct.product}} --}}
+             
+              {{!-- {{/each }}
+              <tr>
+                <th colspan="2"><span>Total After Discount</span></th>
+                <th></th>
+                <th> <span>Rs.{{singleproduct.Totalafter_discount}}</span></th>
+              </tr>
+              {{!-- <tr>
+                <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
+                <th>x02</th>
+                <th> <span>$720.00</span></th>
+              </tr>
+              <tr>
+                <th colspan="3">Subtotal</th>
+                <th> <span>$2160.00</span></th>
+              </tr>
+              <tr>
+                <th colspan="3">shipping</th>
+                <th><span>flat rate: $50.00</span></th>
+              </tr> 
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="col" colspan="3">TOTAL</th>
+                <th scope="col">Rs. {{singleproduct.totalAmount}}</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>--}}
+  <div class="container">
+  <div class="row">
+						<div class="col-12 col-md-10 hh-grayBox pt45 pb20">
+							<div class="row justify-content-between">
+								<div class="order-tracking">
+									<span class="is-complete fw-bold" ></span>
+									<p >Ordered<br><span>Mon, June 24</span></p>
+								</div>
+								<div class="order-tracking">
+									<span class="is-complete"></span>
+									<p>Shipped<br><span>Tue, June 25</span></p>
+								</div>
+								<div class="order-tracking">
+									<span class="is-complete"></span>
+									<p>Delivered<br><span>Fri, June 28</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+</div>
+</section>
+<style>
+        
+
+body {
+  background: rgb(208, 224, 237);
+}
+.hh-grayBox {
+	background-color: #F8F8F8;
+	margin-bottom: 20px;
+	padding: 35px;
+  margin-top: 20px;
+}
+.pt45{padding-top:45px;}
+.order-tracking{
+	text-align: center;
+	width: 33.33%;
+	position: relative;
+	display: block;
+}
+.order-tracking .is-complete{
+	display: block;
+	position: relative;
+	border-radius: 50%;
+	height: 30px;
+	width: 30px;
+	border: 0px solid #AFAFAF;
+	background-color: #655afd;
+	margin: 0 auto;
+	transition: background 0.25s linear;
+	-webkit-transition: background 0.25s linear;
+	z-index: 2;
+}
+.order-tracking .is-complete:after {
+	display: block;
+	position: absolute;
+	content: '';
+	height: 14px;
+	width: 7px;
+	top: -2px;
+	bottom: 0;
+	left: 5px;
+	margin: auto 0;
+	border: 0px solid #AFAFAF;
+	border-width: 0px 2px 2px 0;
+	transform: rotate(45deg);
+	opacity: 0;
+}
+.order-tracking.completed .is-complete{
+	border-color: #27aa80;
+	border-width: 0px;
+	background-color: #27aa80;
+}
+.order-tracking.completed .is-complete:after {
+	border-color: #fff;
+	border-width: 0px 3px 3px 0;
+	width: 7px;
+	left: 11px;
+	opacity: 1;
+}
+.order-tracking p {
+	color: #A4A4A4;
+	font-size: 16px;
+	margin-top: 8px;
+	margin-bottom: 0;
+	line-height: 20px;
+}
+.order-tracking p span{font-size: 14px;}
+.order-tracking.completed p{color: #000;}
+.order-tracking::before {
+	content: '';
+	display: block;
+	height: 3px;
+	width: calc(100% - 40px);
+	background-color: #7482f2;
+	top: 13px;
+	position: absolute;
+	left: calc(-50% + 20px);
+	z-index: 0;
+}
+.order-tracking:first-child:before{display: none;}
+.order-tracking.completed:before{background-color: #27aa80;}
+
+    </style>
+
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+ <script src="/javascripts/addToCart.js"></script>
+    <script>
+        var foo = "{{single.obj.status}}";
+        var div = document.getElementsByClassName("order-tracking")
+        if(foo == "Ordered"){
+            div[0].classList.add('completed')
+        }else if(foo == "shipped"){
+			document.getElementById("cancel").style.display = "none";
+            div[0].classList.add('completed')
+            div[1].classList.add('completed')
+        }else if(foo == "Delivered"){
+			document.getElementById("cancel").style.display = "none";
+            div[0].classList.add('completed')
+            div[1].classList.add('completed')
+            div[2].classList.add('completed')
+        }
+    </script>
+
+<script src="/javascripts/script.js"></script>
+
+<!-- jquery plugins here-->
+<script src="/javascripts/jquery-1.12.1.min.js"></script>
+<!-- popper js -->
+<script src="/javascripts/popper.min.js"></script>
+<!-- bootstrap js -->
+<script src="/javascripts/bootstrap.min.js"></script>
+<!-- easing js -->
+<script src="/javascripts/jquery.magnific-popup.js"></script>
+<!-- swiper js -->
+<script src="/javascripts/swiper.min.js"></script>
+<!-- swiper js -->
+<script src="/javascripts/masonry.pkgd.js"></script>
+<!-- particles js -->
+<script src="/javascripts/owl.carousel.min.js"></script>
+<script src="/javascripts/jquery.nice-select.min.js"></script>
+<!-- slick js -->
+<script src="/javascripts/slick.min.js"></script>
+<script src="/javascripts/jquery.counterup.min.js"></script>
+<script src="/javascripts/waypoints.min.js"></script>
+{{!--
+<script src="/javascripts/contact.js"></script> --}}
+<script src="/javascripts/jquery.ajaxchimp.min.js"></script>
+<script src="/javascripts/jquery.form.js"></script>
+<script src="/javascripts/jquery.validate.min.js"></script>
+<script src="/javascripts/mail-script.js"></script>
+<!-- custom js -->
+<script src="/javascripts/custom.js"></script>

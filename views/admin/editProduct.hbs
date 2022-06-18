@@ -1,0 +1,105 @@
+ 
+   <meta charset="utf-8">
+    <title>SHIHAD-</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+          {{!-- {{>adminpartials}} --}}
+<div class="container-fluid pt-4 px-4">
+
+                <section>
+                    <div class="container t-50%">
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <h2 class="text-center">EDIT PRODUCTS</h2>
+                                <form action="/admin/editProduct/{{products._id}}" method="post"  name="editproduct" enctype="multipart/form-data">
+                                    <label for="">Name</label>
+                                    <input type="text" name="name" class="form-control" value="{{products.name}}" required />
+                                    <label for="">product Name</label>
+                                    <input type="text" name="pname" class="form-control" value="{{products.productName}}"/>
+                                    <label for="">Company Name</label>
+                                    <input type="text" name="cname" class="form-control" value="{{products.companyName}}"/>
+                                    <label for="">rate</label>
+                                    <input type="number" name="rate" class="form-control" value="{{products.price}}"/>
+                                    <label for="">Category</label>
+                                    <input type="text" name="category" class="form-control" value="{{products.subcategory}}" />
+                                    <div class="mb-3">
+                                        <label for="formFileMultiple" class="form-label">Add your products Main
+                                            image</label>
+                                        <input class="form-control" type="file" id="file" name="images1" >
+                                         <img style="width: 100px;" src="/uploads/{{products.images.[0].img1}}" alt="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formFileMultiple" class="form-label">Add your products Main
+                                            image</label>
+                                        <input class="form-control" type="file" id="file" name="images2">
+                                          <img style="width: 100px;" src="/uploads/{{products.images.[0].img2}}" alt="">
+                                    </div>
+                                    {{!-- <div class="mb-3">
+                                        <label for="formFileMultiple" class="form-label">Add your products Main
+                                            image</label>
+                                        <input class="form-control" type="file" id="file" name="img3" >
+                                    </div> --}}
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1" class="form-label">description
+                                        </label>
+                                         <input type="text" style="width: 100%;" name="decription" class="form-control" value="{{products.description}}" />
+                                    </div>
+                                    <label for="">Color</label>
+                                    <input type="text" name="colrname" class="form-control" value="{{products.colour}}" />
+                            </div>
+                            <button type="submit" class="btn btn-success mt-4">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+            </section>
+        </div>
+    </div>
+
+
+
+    </div>
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+
+<script src="/javascripts/editvalidation.js"></script>

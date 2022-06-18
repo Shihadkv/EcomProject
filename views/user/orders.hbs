@@ -1,0 +1,123 @@
+
+    <link rel="icon" href="img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/owl.carousel.min.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/all.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/flaticon.css">
+    <link rel="stylesheet" href="/stylesheets/css/themify-icons.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/magnific-popup.css">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/slick.css">
+    <!-- style CSS -->
+     <link rel="stylesheet" href="/stylesheets/css/style.css">
+
+ {{>user-navbar}}
+
+<section class="cart_area padding_top">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">image</th>
+                <th scope="col">Name</th>
+                <th scope="col" >Status</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+                <th scope="col">Manage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  {{#each order}}
+                  
+                  {{#each this.product}}
+                <td>
+                  <div class="media">
+                    <div class="d-flex">
+                      <img  style="height: 100px; width: 110px;" src="/uploads/{{this.image}}" alt="" />
+                    </div>
+                    {{!-- <div class="media-body">
+                      <p>Minimalistic shop for multipurpose use</p>
+                    </div> --}}
+                  </div>
+                </td>
+                <td>
+                    <h5>{{this.name}}</h5>
+                </td>
+                <td>
+                   {{#if this.active}}
+                    <h5 style="color: rgb(0, 255, 26);">{{this.status}}</h5>
+                    {{else}}
+                     <h5 style="color: rgb(255, 0, 0);">{{this.status}}</h5>
+                     {{/if}}
+                </td>
+                <td>
+                 
+                  <h5>{{this.price}}</h5>
+                </td>
+                <td>
+                  <div class="product_count">
+                   <h5>{{this.quantity}}</h5>
+                  </div>
+                </td>
+                <td>
+                  <h5>{{this.subTotal}}</h5>
+                </td>
+                <td>
+                    <a href="/vieworder/{{this._id}}">view Order</a>
+                </td>
+              </tr>
+             {{/each}}
+             {{/each}}
+             
+            </tbody>
+          </table>
+          <div class="checkout_btn_inner float-right">
+            <a class="btn_1" href="#">Continue Shopping</a>
+            <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+          </div>
+        </div>
+      </div>
+  </section>
+
+{{>footer}}
+  
+  <script src="/javascripts/script.js"></script>
+
+  <!-- jquery plugins here-->
+  <script src="/javascripts/jquery-1.12.1.min.js"></script>
+  <!-- popper js -->
+  <script src="/javascripts/popper.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="/javascripts/bootstrap.min.js"></script>
+  <!-- easing js -->
+  <script src="/javascripts/jquery.magnific-popup.js"></script>
+  <!-- swiper js -->
+  <script src="/javascripts/swiper.min.js"></script>
+  <!-- swiper js -->
+  <script src="/javascripts/masonry.pkgd.js"></script>
+  <!-- particles js -->
+  <script src="/javascripts/owl.carousel.min.js"></script>
+  <script src="/javascripts/jquery.nice-select.min.js"></script>
+  <!-- slick js -->
+  <script src="/javascripts/slick.min.js"></script>
+  <script src="/javascripts/jquery.counterup.min.js"></script>
+  <script src="/javascripts/waypoints.min.js"></script>
+  {{!--
+  <script src="/javascripts/contact.js"></script> --}}
+  <script src="/javascripts/jquery.ajaxchimp.min.js"></script>
+  <script src="/javascripts/jquery.form.js"></script>
+  <script src="/javascripts/jquery.validate.min.js"></script>
+  <script src="/javascripts/mail-script.js"></script>
+  <!-- custom js -->
+  <script src="/javascripts/custom.js"></script>

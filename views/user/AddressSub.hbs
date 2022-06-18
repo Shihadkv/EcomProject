@@ -1,0 +1,279 @@
+<!doctype >
+<html lang="zxx">
+
+<head>
+
+    <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/owl.carousel.min.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/all.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/flaticon.css">
+    <link rel="stylesheet" href="/stylesheets/css/themify-icons.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/magnific-popup.css">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/slick.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="/stylesheets/css/style.css">
+</head>
+
+<body>
+    <!--::header part start::-->
+    {{>user-navbar}}
+    <!-- Header part end-->
+
+    <!--================Home Banner Area =================-->
+    <!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2>Check Your Address</h2>
+                            <p>Home <span>-</span> Shop Single</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+    
+    <section>
+        <div class="container pt-5">
+            <div class="row ">
+       <h5 class="fw-bold">Select your Address : </h5>
+                {{#each useradres.address}}
+                <div class="col-md-3">
+                     
+                    <div class="card w-30" style="background-color: rgb(228, 228, 236);" >
+                        <div class="card-body">
+                          
+                            <h5 class="card-title" placeholder="Name">Name: {{this.firstName}}</h5>
+                             {{#if this.status}}
+                            <p>Home Address</p> 
+                            {{else}}
+                            <p>Not Home Address</p>
+                            {{/if}}
+                            <p class="card-text" placeholder="Last name">Mob number: {{this.phoneNumber}}</p>
+                            <p class="card-text" placeholder="Last name">Last name:{{this.lastName}}
+                                <p class="card-text" placeholder="Last name">{{this.houseName}}
+                                    <p class="card-text" placeholder="Last name">{{this.postal}}
+
+                            
+                            </p>
+                            <a href="/checkout/{{this._id}}"   class="button-86">select</a>
+                        </div>
+                    </div>
+
+                </div>
+                {{/each}}
+  
+
+            </div>
+
+        </div>
+    </section>
+
+    <!--================Checkout Area =================-->
+    <section class="checkout_area padding_top">
+        <div class="container">
+            <div class="returning_customer">
+                <div class="billing_details">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h3> Add Address Details</h3>
+                            <form class="row contact_form" action="/AddressSub" method="post" novalidate="novalidate">
+                                <div class="col-md-6 form-group p_star">
+                                    <input type="text" class="form-control" id="first" name="firstname"
+                                        placeholder="First name" />
+                                    {{!-- <span class="placeholder" placeholder="First name"></span> --}}
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <input type="text" class="form-control" id="last" name="lastname"
+                                        placeholder="Last name" />
+                                    {{!-- <span placeholder="Last name"></span> --}}
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="company" name="company"
+                                        placeholder="Company name" />
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <input type="text" class="form-control" id="number" name="phonenumber"
+                                        placeholder="Phone number" />
+                                    {{!-- <span class="placeholder" data-placeholder="Phone number"></span> --}}
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <input type="text" class="form-control" id="country" name="countryName"
+                                        placeholder="Counrty" />
+                                    {{!-- <span class="placeholder" placeholder="Counrty"></span> --}}
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <input type="text" class="form-control" id="house" name="houseName"
+                                        placeholder="HouseName" />
+                                    {{!-- <span class="placeholder" data-placeholder="HouseName"></span> --}}
+                                </div>
+
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="add1" name="landmark" />
+                                    <span class="placeholder" data-placeholder="Nearest Landmark"></span>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="add2" name="village" />
+                                    <span class="placeholder" data-placeholder="Village"></span>
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <input type="text" class="form-control" id="district" name="districts" />
+                                    <span class="placeholder" data-placeholder="District"></span>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="city" name="city" />
+                                    <span class="placeholder" data-placeholder="Town/City"></span>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="zip" name="zip"
+                                        placeholder="Postcode/ZIP" />
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="creat_account">
+                                        <input type="checkbox" id="f-option2" name="selector" />
+                                        <label for="f-option2">Create an account?</label>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit">submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!--================End Checkout Area =================-->
+
+    <!--::footer_part start::-->
+    <footer class="footer_part">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Top Products</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Managed Website</a></li>
+                            <li><a href="">Manage Reputation</a></li>
+                            <li><a href="">Power Tools</a></li>
+                            <li><a href="">Marketing Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Quick Links</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Jobs</a></li>
+                            <li><a href="">Brand Assets</a></li>
+                            <li><a href="">Investor Relations</a></li>
+                            <li><a href="">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Features</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Jobs</a></li>
+                            <li><a href="">Brand Assets</a></li>
+                            <li><a href="">Investor Relations</a></li>
+                            <li><a href="">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Resources</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Guides</a></li>
+                            <li><a href="">Research</a></li>
+                            <li><a href="">Experts</a></li>
+                            <li><a href="">Agencies</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="single_footer_part">
+                        <h4>Newsletter</h4>
+                        <p>Heaven fruitful doesn't over lesser in days. Appear creeping
+                        </p>
+                        <div id="mc_embed_signup">
+                            <form target="_blank"
+                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                method="get" class="subscribe_form relative mail_part">
+                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = ' Email Address '">
+                                <button type="submit" name="submit" id="newsletter-submit"
+                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
+                                <div class="mt-10 info"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="copyright_part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="footer_icon social_icon">
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
+                                <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--::footer_part end::-->
+
+    <!-- jquery plugins here-->
+
+    <script src="/javascripts/script.js"></script>
+
+    <!-- jquery plugins here-->
+    <script src="/javascripts/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/javascripts/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="/javascripts/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="/javascripts/swiper.min.js"></script>
+    <!-- swiper js -->
+    <script src="/javascripts/masonry.pkgd.js"></script>
+    <!-- particles js -->
+    <script src="/javascripts/owl.carousel.min.js"></script>
+    <script src="/javascripts/jquery.nice-select.min.js"></script>
+    <!-- slick js -->
+    <script src="/javascripts/slick.min.js"></script>
+    <script src="/javascripts/jquery.counterup.min.js"></script>
+    <script src="/javascripts/waypoints.min.js"></script>
+    {{!--
+    <script src="/javascripts/contact.js"></script> --}}
+    <script src="/javascripts/jquery.ajaxchimp.min.js"></script>
+    <script src="/javascripts/jquery.form.js"></script>
+    <script src="/javascripts/jquery.validate.min.js"></script>
+    <script src="/javascripts/mail-script.js"></script>
+    <!-- custom js -->
+    <script src="/javascripts/custom.js"></script>
+</body>
+
+</html>
