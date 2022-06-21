@@ -41,7 +41,7 @@ div[style*="margin: 16px 0;"] { margin: 0 !important; }
 <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Open Sans, Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
 For what reason would it be advisable for me to think about business content? That might be little bit risky to have crew member like them. 
 </div>
-
+{{!-- {{#each singleOrder}} --}}
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <tr>
         <td align="center" style="background-color: #eeeeee;" bgcolor="#eeeeee">
@@ -54,7 +54,7 @@ For what reason would it be advisable for me to think about business content? Th
                     <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:300px;">
                         <tr>
                             <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 800; line-height: 48px;" class="mobile-center">
-                                <h1 style="font-size: 36px; font-weight: 800; margin: 0; color: #ffffff;">BBBootstrap</h1>
+                                <h1 style="font-size: 36px; font-weight: 800; margin: 0; color: #ffffff;">BHFashion</h1>
                             </td>
                         </tr>
                     </table>
@@ -81,21 +81,23 @@ For what reason would it be advisable for me to think about business content? Th
               
                 </td>
             </tr>
+          
             <tr>
                 <td align="center" style="padding: 35px 35px 20px 35px; background-color: #ffffff;" bgcolor="#ffffff">
+                    
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
                     <tr>
                         <td align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;">
                             <img src="https://img.icons8.com/carbon-copy/100/000000/checked-checkbox.png" width="125" height="120" style="display: block; border: 0px;" /><br>
                             <h2 style="font-size: 30px; font-weight: 800; line-height: 36px; color: #333333; margin: 0;">
-                                Thank You For Your Order!
+                                Thank You For Your Order! 
                             </h2>
                         </td>
                     </tr>
                     <tr>
                         <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
                             <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium iste ipsa numquam odio dolores, nam.
+                                We are so happy for choosing us .Your Items are orderd and its on the way..
                             </p>
                         </td>
                     </tr>
@@ -107,31 +109,38 @@ For what reason would it be advisable for me to think about business content? Th
                                         Order Confirmation #
                                     </td>
                                     <td width="25%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                        2345678
+                                        Total
                                     </td>
                                 </tr>
+                                {{#each singleOrder.order.product}}
                                 <tr>
                                     <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                        Purchased Item (1)
+                                        Purchased Item - ({{this.quantity}})  {{this.name}}
                                     </td>
                                     <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                        $100.00
+                                        Rs.{{this.subTotal}}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                        Shipping + Handling
+                                       Discounts
                                     </td>
                                     <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                        $10.00
+                                        Rs. -{{this.discount}}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                        Sales Tax
+                                        Brand - {{this.brand}}
+                                    </td>
+                                </tr>
+                                   {{/each }}
+                                <tr>
+                                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+                                  SubTotal 
                                     </td>
                                     <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                        $5.00
+                                        Rs.{{singleOrder.order.totalAmount}}
                                     </td>
                                 </tr>
                             </table>
@@ -145,13 +154,14 @@ For what reason would it be advisable for me to think about business content? Th
                                         TOTAL
                                     </td>
                                     <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
-                                        $115.00
+                                        Rs.{{singleOrder.order.Totalafter_discount}}
                                     </td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
                 </table>
+             
                 
                 </td>
             </tr>
@@ -166,7 +176,10 @@ For what reason would it be advisable for me to think about business content? Th
                                     <tr>
                                         <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
                                             <p style="font-weight: 800;">Delivery Address</p>
-                                            <p>{{singleOrder.order.userId}}<br><br>{{singleOrder.order.address.houseName}}</p>
+                                            <p>{{singleOrder.order.userId}}</p>
+                                            <p>{{singleOrder.order.address.houseName}}</p>
+                                            <p>{{singleOrder.order.address.landMark}}</p>
+                                            <p>{{singleOrder.order.address.city}}</p>
 
                                         </td>
                                     </tr>
@@ -238,9 +251,11 @@ For what reason would it be advisable for me to think about business content? Th
                 </td>
             </tr>
         </table>
+        
         </td>
     </tr>
 </table>
+{{!-- {{/each}} --}}
     
 </body>
 </html>

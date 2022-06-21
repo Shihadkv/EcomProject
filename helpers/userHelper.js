@@ -468,7 +468,7 @@ const deletingCart = (id, data) => {
 }
 
 
-const productShow = (proId, id) => {
+const productShow = (proId) => {
     return new Promise(async (resolve, reject) => {
         let showProduct = await Addproduct.findOne({ _id: proId }).lean()
 
@@ -499,54 +499,54 @@ const getCartCount = (data) => {
 
 }
 
-const decrimentProducts = (data, user) => {
+// const decrimentProducts = (data, user) => {
 
 
-    return new Promise(async (resolve, reject) => {
+//     return new Promise(async (resolve, reject) => {
 
-        let userCart = await CartModel.findOne({ userId: user.email })
+//         let userCart = await CartModel.findOne({ userId: user.email })
 
-        if (data.quantities <= 1) {
+//         if (data.quantities <= 1) {
 
-            resolve()
-        } else {
-            if (userCart) {
-                let exists = userCart.product.findIndex((product) => product.productId == data.productId)
-                if (exists != -1) {
-                    await CartModel.updateOne(
-                        { userId: user.email, 'product.productId': data.productId },
-                        { $inc: { "product.$.quantity": -1 } }
-                    );
-                    resolve();
-                }
-            }
-        }
-    })
-}
-
-
-const incrementsProducts = (data, user) => {
+//             resolve()
+//         } else {
+//             if (userCart) {
+//                 let exists = userCart.product.findIndex((product) => product.productId == data.productId)
+//                 if (exists != -1) {
+//                     await CartModel.updateOne(
+//                         { userId: user.email, 'product.productId': data.productId },
+//                         { $inc: { "product.$.quantity": -1 } }
+//                     );
+//                     resolve();
+//                 }
+//             }
+//         }
+//     })
+// }
 
 
-    return new Promise(async (resolve, reject) => {
-        let userCart = await CartModel.findOne({ userId: user.email })
-        let product = await Addproduct.findOne({ productId: data.productId })
+// const incrementsProducts = (data, user) => {
 
-        if (userCart) {
-            let newQuantity = userCart.product.map((e) => e.quantity);
-            quantity = newQuantity.pop();
-            if (quantity < product.stock) {
-                await CartModel.updateOne(
-                    { userId: user.email, 'product.productId': data.productId },
-                    { $inc: { "product.$.quantity": 1 } }
-                );
-                resolve();
-            } else {
-                reject({ status: false })
-            }
-        }
-    })
-}
+
+//     return new Promise(async (resolve, reject) => {
+//         let userCart = await CartModel.findOne({ userId: user.email })
+//         let product = await Addproduct.findOne({ productId: data.productId })
+
+//         if (userCart) {
+//             let newQuantity = userCart.product.map((e) => e.quantity);
+//             quantity = newQuantity.pop();
+//             if (quantity < product.stock) {
+//                 await CartModel.updateOne(
+//                     { userId: user.email, 'product.productId': data.productId },
+//                     { $inc: { "product.$.quantity": 1 } }
+//                 );
+//                 resolve();
+//             } else {
+//                 reject({ status: false })
+//             }
+//         }
+//     })
+// }
 
 const totalAmount = (user) => {
 
@@ -662,28 +662,34 @@ const discount = (user) => {
 
 }
 
-// const changecartQuantity = (data,Id)=>{
-//     console.log(data);
-//     console.log(Id);
-// data.count = parseInt(data.count)
-// return new Promise(async(resolve,reject)=>{
-//     if(data.qty <=1 && data.count == -1){
-//         return resolve({quantity:0})
-//     }
-//     const cart = await CartModel.findOne({userId: Id.email})
-//     const product = await Addproduct.findOne({_id:data.product})
-//     if(cart){
-//         if(data.qty>=product.stock && data.count==1){
-//             console.log('out of stock');
-//             resolve({error: "out of stock"})
-//         }else{
-//             console.log("loop exist");  
-//             await CartModel.updateOne({'product.productId':data.product},{$inc:{'product.$quantity':data.count}})
-//             return resolve({status:true,msge:"Quantity updated",count:data.count})
-//         }
-//     }
-// })
-// }
+const changecartQuantity = (data,Id)=>{
+   console.log(data,"data");
+   console.log(Id,"its id top");
+data.count = parseInt(data.count)
+return new Promise(async(resolve,reject)=>{
+    if(data.qty <=1 && data.count == -1){
+        console.log("if 1");
+        return resolve({quantity:0})
+    }
+    const cart = await CartModel.findOne({userId: Id.email})
+    console.log(cart,"its cart");
+    const product = await Addproduct.findOne({_id:data.product})
+    if(cart){
+        console.log("if 2");
+        if(data.qty>=product.stock && data.count){
+            console.log("if3");
+            console.log('out of stock');
+            resolve({error: "out of stock"})
+        }else{
+            console.log("loop exist");
+            console.log(Id,"its id last");  
+            
+            await CartModel.updateOne({userId:Id.email,'product.productId':data.product},{$inc:{'product.$.quantity':data.count}})
+            return resolve({count:data.count})
+        }
+    }
+})
+}
 
 /*---adress submit --*/
 
@@ -822,9 +828,9 @@ const placeOrder = (data, user) => {
                 image: pro.image,
                 quantity: pro.quantity,
                 subTotal: pro.subtotal,
+                colour:pro.colour,
                 discount:pro.discount,
                 paymentType: data.paymentMethod
-
             })
         })
 
@@ -998,7 +1004,7 @@ const findsubcategory = ()=>{
 
 const getOrdersingleDetail = (user,id) => {
 return new Promise(async (resolve, reject) => {
-  let order = await orderModel.findOne({userId:user.email}).sort({_id: -1});
+  let order = await orderModel.findOne({userId:user.email}).sort({_id: -1}).lean();
         resolve({order})
        
     })
@@ -1048,8 +1054,8 @@ module.exports = {
     deletingCart,
     productShow,
     getCartCount,
-    decrimentProducts,
-    incrementsProducts,
+    // decrimentProducts,
+    // incrementsProducts,
     subTotal,
     totalAmount,
     discount,
@@ -1073,7 +1079,8 @@ module.exports = {
     findsubcategory,
     getcategory,
     displaySubCat,
-    displayProducts
+    displayProducts,
+    changecartQuantity
 
 
 

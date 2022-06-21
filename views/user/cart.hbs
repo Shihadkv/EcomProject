@@ -24,7 +24,7 @@
 {{>user-navbar}}
 
 <!--================Cart Area =================-->
-<section class="cart_area padding_top mt-4">
+<section class="cart_area padding_top mt-4" id="qty">
   <div class="container">
     <h2 class="mb-4">My Cart</h2>
     <div class="cart_inner">
@@ -33,9 +33,10 @@
           <thead>
             <tr>
               <th scope="col">Product</th>
+               <th scope="col">Product Price</th>
               <th scope="col">Product name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
+             
+              <th scope="col">Productquantity</th>
               <th scope="col">Total</th>
               <th scope="col">Remove</th>
 
@@ -49,8 +50,8 @@
 
             <tr>
               <td>
-                <div class="media">
-                  <div class="d-flex">
+                <div>
+                  <div >
                     <img style="height: 100px;width: 100px;" src="/uploads/{{this.image}}" alt="">
                   </div>
                   <div class="media-body">
@@ -58,34 +59,34 @@
                   </div>
                 </div>
               </td>
-
-              <td>
-                <h5>{{this.name}}</h5>
-              </td>
               <td>
                 <h5>{{this.price}}</h5>
               </td>
               <td>
+                <h5>{{this.name}}</h5>
+              </td>
 
-
-                <div>
-                  <button onclick="decrimentProduct('{{this.productId}}','{{this.quantity}}')" type="button"
-                    class="btn btn-light">- </button>
-
-
-                  <input style="width: 30px;height: 30px;" type="text" id="numform" name="quantity"
-                    placeholder="{{this.quantity}}">
+              <td>
 
 
 
-                  <button type="button" onclick="incrementProduct('{{this.productId}}','{{this.quantity}}')"
-                    class="btn btn-light">+ </button>
-                  {{!-- <button onclick="changeQuantity('{{this.productId}}','{{this.quantity}}',-1)" type="button"
-                    class="btn btn-light">- </button> <span>{{this.quantity}}</span> <button type="button"
-                    onclick="changeQuantity('{{this.productId }}','{{this.quantity}}',1)" class="btn btn-light">+
-                  </button> --}}
+                {{!-- <button onclick="decrimentProduct('{{this.productId}}','{{this.quantity}}')" type="button"
+                  class="btn btn-light">- </button>
 
-                </div>
+
+                <input style="width: 30px;height: 30px;" type="text" id="numform" name="quantity"
+                  placeholder="{{this.quantity}}">
+
+
+
+                <button type="button" onclick="incrementProduct('{{this.productId}}','{{this.quantity}}')"
+                  class="btn btn-light">+ </button> --}}
+                <button onclick="changeQuantity('{{this.productId}}','{{this.quantity}}',-1)" type="button"
+                  class="btn btn-light">- </button> <span>{{this.quantity}}</span> <button type="button"
+                  onclick="changeQuantity('{{this.productId }}','{{this.quantity}}',1)" class="btn btn-light">+
+                </button>
+
+
 
               </td>
               <td>
@@ -104,7 +105,7 @@
             <style>
               @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
 
-             
+
 
               .mt-100 {
                 margin-top: 100px;
@@ -352,3 +353,39 @@
 <script src="/javascripts/mail-script.js"></script>
 <!-- custom js -->
 <script src="/javascripts/custom.js"></script>
+
+
+<script>
+
+
+  function changeQuantity(proId, qty, count) {
+    console.log("pid", proId);
+    console.log("fazz", qty);
+    console.log("count", count);
+
+    $.ajax({
+      url: '/change-product-quantity',
+      data: {
+
+        product: proId,
+        qty: qty,
+        count: count
+      },
+      method: 'post',
+      success: (response) => {
+
+        if (response.count) {
+          location.reload()
+        } else if (response.quantity == 0) {
+
+        } else {
+          alert("out of stockss")
+        }
+      }
+
+
+    })
+  }
+
+
+</script>

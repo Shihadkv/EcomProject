@@ -3,7 +3,7 @@ var router = express.Router();
 const userHelper = require('../helpers/userHelper');
 const userModel = require('../model/userModel')
 const session = require('express-session');
-var { doLogin, dosignup, forgetLoad, forgetPasswordLoad, otpverify, featuredProduct, addingToCart, cartItems, deletingCart, productShow, getCartCount, decrimentProducts, incrementsProducts, totalAmount, subTotal, discount, addingTofavourte, getFavCount, favItems, deletingFavourites, submitAddress, getAddress,  finduser, findAddress, placeOrder, generateRazorpay, verifyPayment, getOrderDetail, getSingleproduct2, cancelYourOrder, deleteYourOrder, search, getOrdersingleDetail,findsubcategory,getcategory,displaySubCat,displayProducts} = require('../helpers/userHelper')
+var { doLogin, dosignup, forgetLoad, forgetPasswordLoad, otpverify, featuredProduct, addingToCart, cartItems, deletingCart, productShow, getCartCount, decrimentProducts, incrementsProducts, totalAmount, subTotal, discount, addingTofavourte, getFavCount, favItems, deletingFavourites, submitAddress, getAddress, finduser, findAddress, placeOrder, generateRazorpay, verifyPayment, getOrderDetail, getSingleproduct2, cancelYourOrder, deleteYourOrder, search, getOrdersingleDetail, findsubcategory, getcategory, displaySubCat, displayProducts, changecartQuantity } = require('../helpers/userHelper')
 var jwt = require('jsonwebtoken');
 const { response } = require('../app');
 const async = require('hbs/lib/async');
@@ -153,10 +153,10 @@ router.get('/vieworder/:id', verifyLogin, (req, res) => {
 /*-- thank you page --*/
 
 
-router.get('/thankyou', async(req, res) => {
-  await getOrdersingleDetail(req.session.user,req.params.id).then((singleOrder) => {
+router.get('/thankyou', async (req, res) => {
+  await getOrdersingleDetail(req.session.user, req.params.id).then((singleOrder) => {
     console.log(singleOrder, "order");
-    res.render('user/thankyou', {singleOrder})
+    res.render('user/thankyou', { singleOrder })
   })
 })
 
@@ -166,7 +166,7 @@ router.get('/thankyou', async(req, res) => {
 /*---cancel order---*/
 
 router.get('/cancelorder/:id', (req, res) => {
-  
+
   cancelYourOrder(req.params.id, req.session.user).then(() => {
     res.json({ status: true })
   })
@@ -186,11 +186,11 @@ router.get('/deleteOrder/:id', (req, res) => {
 /* sub cat */
 
 
-router.get('/getsubcategory/:id',async(req,res)=>{
-  let response  = await displaySubCat(req.params.id)
-  let products =  await displayProducts(req.params.id)
-  console.log(products,"its product");
-   res.render('user/getsubcategory',{response,products})
+router.get('/getsubcategory/:id' ,verifyLogin, async (req, res) => {
+  let response = await displaySubCat(req.params.id)
+  let products = await displayProducts(req.params.id)
+  console.log(products, "its product");
+  res.render('user/getsubcategory', { response, products })
 
 })
 
@@ -207,13 +207,13 @@ router.get('/getsubcategory/:id',async(req,res)=>{
 
 
 
-router.get('/category', verifyLogin,async(req, res) => {
-  
+router.get('/category', verifyLogin, async (req, res) => {
+
   featuredProduct().then(async (data) => {
     let subcategory = await findsubcategory()
     let category = await getcategory()
-  
-    res.render('user/category', { data,subcategory,category});
+
+    res.render('user/category', { data, subcategory, category });
   })
 })
 
@@ -226,24 +226,46 @@ router.get('/userprofile', verifyLogin, async (req, res) => {
 })
 router.post('/userprofile', (req, res) => {
   submitAddress(req.body, req.session.user)
-  res.redirect('/')
+  res.redirect('/cart')
 
 })
 
 
+router.get('/AddressSub', verifyLogin, async (req, res) => {
+  let useradres = await getAddress(req.session.user)
+
+  if (useradres) {
+    res.render('user/AddressSub', { useradres })
+
+  } else {
+    res.redirect('/userprofile')
+  }
+
+})
+
+
+router.post('/AddressSub', verifyLogin, (req, res) => {
+  submitAddress(req.body, req.session.user).then(() => {
+    res.redirect('/AddressSub')
+  })
+})
+
+
+
+
 /*---seerach product--*/
 
-router.post('/category',async(req,res)=>{
-  if(req.session.user){
+router.post('/category', async (req, res) => {
+  if (req.session.user) {
     let count = await getCartCount(req.session.user)
     let favcounts = await getFavCount(req.session.user)
     let user = req.session.user
-    search(req.body).then((data)=>{
-      res.render('user/category',{count,favcounts,data})
+    search(req.body).then((data) => {
+      res.render('user/category', { count, favcounts, data })
     })
-  }else{
-    search(req.body).then((data)=>{
-      res.render('user/category',{data})
+  } else {
+    search(req.body).then((data) => {
+      res.render('user/category', { data })
     })
   }
 })
@@ -261,7 +283,7 @@ router.get('/checkout/:id', verifyLogin, async (req, res) => {
   let subtotal = await subTotal(req.session.user)
   let discounts = await discount(req.session.user)
 
-   
+
   findAddress(id, req.session.user).then((address) => {
     res.render('user/checkout', { address, cartCount, data, total, subtotal, discounts })
     // res.json({status:true})
@@ -283,9 +305,9 @@ router.post('/checkout', async (req, res) => {
       })
     }
 
-  }).catch((err)=>{
+  }).catch((err) => {
     req.session.paymenterr = err.msg
-    res.render('user/checkout',{error:req.session.paymenterr})
+    res.render('user/checkout', { error: req.session.paymenterr })
   })
 
 })
@@ -306,31 +328,12 @@ router.post('/verifypayment', (req, res) => {
 
 
 
-router.get('/AddressSub', verifyLogin, async (req, res) => {
-  let useradres = await getAddress(req.session.user)
-
-  if (useradres) {
-    res.render('user/AddressSub', { useradres })
-
-  }else{
-    res.redirect('/userprofile')
-  }
-
-})
-
-
-router.post('/AddressSub', verifyLogin, (req, res) => {
-  submitAddress(req.body, req.session.user).then(() => {
-    res.render('user/AddressSub')
-  })
-})
-
 
 router.get('/productShow/:id', async (req, res) => {
-  favCounts = await getFavCount(req.session.user)
-  productShow(req.params.id, req.session.user).then((response) => {
+  // favCounts = await getFavCount(req.session.user)
+  productShow(req.params.id).then((response) => {
 
-    res.render('user/productShow', { response, favCounts })
+    res.render('user/productShow', { response})
   }).catch((err) => {
     res.redirect('/')
   })
@@ -339,17 +342,19 @@ router.get('/productShow/:id', async (req, res) => {
 
 
 router.get('/cart', verifyLogin, async (req, res) => {
+  let subtotal = await subTotal(req.session.user)
+  let total = await totalAmount(req.session.user)
   let data = await cartItems(req.session.user)
   cartCount = await getCartCount(req.session.user)
   favCounts = await getFavCount(req.session.user)
 
   let discounts = await discount(req.session.user)
-  console.log(data, "its cartttttt");
+  
 
   if (data) {
     let product = data.product
-    let total = await totalAmount(req.session.user)
-    let subtotal = await subTotal(req.session.user)
+
+
     res.render('user/cart', { product, cartCount, favCounts, data, total, subtotal, discounts })
   } else {
     res.render('user/cart', { cartCount, favCounts, discounts })
@@ -380,24 +385,24 @@ router.get('/deleteCart/:id', (req, res) => {
 
 
 router.post('/change-product-quantity', (req, res) => {
-  changecartQuantity(req.body, req.session.user).then(() => {
-    res.render('user/cart')
+  changecartQuantity(req.body, req.session.user).then((response) => {
+    res.json(response)
   })
 
 
 })
 
-router.post('/decriment-product', (req, res) => {
-  decrimentProducts(req.body, req.session.user).then(() => {
-    res.json({ status: true })
-  })
-})
+// router.post('/decriment-product', (req, res) => {
+//   decrimentProducts(req.body, req.session.user).then(() => {
+//     res.json({ status: true })
+//   })
+// })
 
-router.post('/increment-product', (req, res) => {
-  incrementsProducts(req.body, req.session.user).then(() => {
-    res.json({ status: true })
-  })
-})
+// router.post('/increment-product', (req, res) => {
+//   incrementsProducts(req.body, req.session.user).then(() => {
+//     res.json({ status: true })
+//   })
+// })
 
 
 router.get('/cart', verifyLogin, async (req, res) => {
@@ -431,13 +436,14 @@ router.post('/signup', (req, res) => {
 })
 
 router.get('/verification', (req, res) => {
+  console.log('hiiii');
   const data = req.session.userEmail
   res.render('user/verification', { data })
 })
 
 router.post('/verification', (req, res) => {
   otpverify(req.body, req.session.otp, req.session.user).then((response) => {
-   console.log(response,"its response");
+    console.log(response, "its response");
     res.redirect('/login')
   }).catch((error) => {
     console.log(error.msg);
