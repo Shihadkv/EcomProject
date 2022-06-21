@@ -1,14 +1,28 @@
+
+
+
+
+
 <!doctype html>
 <html lang="zxx">
 
 <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>aranaz</title>
+  <link rel="icon" href="img/favicon.png">
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
   <!-- animate CSS -->
   <link rel="stylesheet" href="/stylesheets/css/animate.css">
   <!-- owl carousel CSS -->
   <link rel="stylesheet" href="/stylesheets/css/owl.carousel.min.css">
+  <!-- nice select CSS -->
+  <link rel="stylesheet" href="/stylesheets/css/nice-select.css">
   <!-- font awesome CSS -->
   <link rel="stylesheet" href="/stylesheets/css/all.css">
+   <link rel="stylesheet" href="/stylesheets/css/lightslider.min.css">
   <!-- flaticon CSS -->
   <link rel="stylesheet" href="/stylesheets/css/flaticon.css">
   <link rel="stylesheet" href="/stylesheets/css/themify-icons.css">
@@ -16,99 +30,67 @@
   <link rel="stylesheet" href="/stylesheets/css/magnific-popup.css">
   <!-- swiper CSS -->
   <link rel="stylesheet" href="/stylesheets/css/slick.css">
+  <link rel="stylesheet" href="/stylesheets/css/price_rangs.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="/stylesheets/css/style.css">
 </head>
 
 <body>
-  <!--::header part start::-->
-
-  <!-- Header part end-->
-
-  {{>user-navbar favcounts=favCounts }}
-  <!-- breadcrumb start-->
-  <section class="breadcrumb breadcrumb_bg">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="breadcrumb_iner">
-            <div class="breadcrumb_iner_item">
-              <h2>Shop Single</h2>
-              <p>Home <span>-</span> Shop Single</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- breadcrumb start-->
-  <!--================End Home Banner Area =================-->
+{{>user-navbar}} 
 
   <!--================Single Product Area =================-->
-  <div class="product_image_area section_padding">
-    <div class="container">
+   <div class="container mt-5">
+  <div class="row">
+  <div class="product_image_area section_padding mt-5">
+   
       <div class="row s_product_inner justify-content-between">
-
-        <div class="col-lg-7 col-xl-7">
+        <div class="col-lg-8 " >
           <div class="product_slider_img">
-            <div id="vertical">
-
-              <div >
-                <img style="height: 500px; width: 400px;" src="/uploads/{{response.images.[0].img1}}">
+            <div id="vertical" >
+              <div data-thumb="/uploads/{{response.images.[0].img1}}">
+               <img style="height: 550px;width: 550px;" src="/uploads/{{response.images.[0].img1}}" alt="" >
               </div>
-
-
-              {{!-- <div data-thumb="img/product/single-product/product_1.png">
-                <img src="img/product/single-product/product_1.png" />
+               <div data-thumb="/uploads/{{response.images.[0].img1}}">
+               <img  style="height: 550px;width: 550px;" src="/uploads/{{response.images.[0].img1}}" alt="">
               </div>
-              <div data-thumb="img/product/single-product/product_1.png">
-                <img src="img/product/single-product/product_1.png" />
+               <div data-thumb="/uploads/{{response.images.[0].img1}}">
+               <img  style="height: 550px;width: 550px;" src="/uploads/{{response.images.[0].img1}}" alt="">
               </div>
-              <div data-thumb="img/product/single-product/product_1.png">
-                <img src="img/product/single-product/product_1.png" />
-              </div> --}}
+               <div data-thumb="/uploads/{{response.images.[0].img1}}">
+               <img style="height: 550px;width: 550px;" src="/uploads/{{response.images.[0].img1}}" alt="">
+              </div>
+              
             </div>
           </div>
         </div>
-
-        <div class="col-lg-5 col-xl-4">
+        <div class="col-lg-4 ">
           <div class="s_product_text">
-            <h5>previous <span>|</span> next</h5>
-            <h3>{{response.productName}}</h3>
+            <h3>{{response.name}}</h3>
             <h2>{{response.price}}</h2>
             <ul class="list">
               <li>
                 <a class="active" href="#">
-
+                  <span>Brand</span> : {{response.colour}}</a>
               </li>
               <li>
-                <a href="#"> <span>Availibility</span> : In Stock</a>
+                <a href="#" class="active">
+                   <span>Availibility</span> : {{response.stock}}</a>
               </li>
-            </ul>
-            <p>
-              {{response.description}}
-              First replenish living. Creepeth image image. Creeping can't, won't called.
-              Two fruitful let days signs sea together all land fly subdue
-            </p>
-            <div class="sizes mt-5">
+              <div class="sizes mt-5">
               <h6 class="text-uppercase">Size</h6>
-               <label class="radio"> <input type="radio" name="size" value="S"
-                  checked> <span>S</span> </label> <label class="radio"> <input type="radio" name="size" value="M">
+              <label class="radio"> <input type="radio" name="size" value="S" checked> <span>S</span> </label> <label
+                class="radio"> <input type="radio" name="size" value="M">
                 <span>M</span> </label> <label class="radio"> <input type="radio" name="size" value="L"> <span>L</span>
               </label> <label class="radio"> <input type="radio" name="size" value="XL"> <span>XL</span> </label> <label
                 class="radio"> <input type="radio" name="size" value="XXL"> <span>XXL</span> </label>
             </div>
+            </ul>
+            <p>
+              {{response.description}}
+            </p>
             <div class="card_area d-flex justify-content-between align-items-center">
-              {{!-- <div class="product_count">
-                <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                <input class="input-number" type="text" value="1" min="0" max="10">
-                <span class="number-increment"> <i class="ti-plus"></i></span>
-              </div> --}}
-              <button onclick="addingToCart('{{response._id}}')" class="btn_3"> add to cart</button>
-
-              <button onclick="addingTofav('{{response._id}}')"
-                style="background-color: transparent; border:none; font-size: 1.5em;" class=""><i class="fa fa-heart-o"
-                  aria-hidden="true"></i></button>
+             <button onclick="addingToCart('{{response._id}}')"  class="btn_3">+ add to cart</button>
+             <button onclick="addingTofav('{{response._id}}')"  style="background-color: transparent; border:none; font-size: 1.5em;" class=""><i class="fa fa-heart-o" aria-hidden="true"></i></button></div>
             </div>
           </div>
         </div>
@@ -118,18 +100,24 @@
   </div>
   <!--================End Single Product Area =================-->
 
+  
 
-  {{>footer}}
+ 
 
+  <!--::footer_part start::-->
 
-
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-  <script src="/javascripts/script.js"></script>
+{{>footer}}
+  <!--::footer_part end::-->
+                                    
 
   <!-- jquery plugins here-->
+  
+  <!-- jquery -->
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="/javascripts/script.js"></script>
+
   <script src="/javascripts/jquery-1.12.1.min.js"></script>
+  <script src=""></script>
   <!-- popper js -->
   <script src="/javascripts/popper.min.js"></script>
   <!-- bootstrap js -->
@@ -137,7 +125,7 @@
   <!-- easing js -->
   <script src="/javascripts/jquery.magnific-popup.js"></script>
   <!-- swiper js -->
-  <script src="/javascripts/swiper.min.js"></script>
+  <script src="/javascripts/lightslider.min.js"></script>
   <!-- swiper js -->
   <script src="/javascripts/masonry.pkgd.js"></script>
   <!-- particles js -->
@@ -145,15 +133,17 @@
   <script src="/javascripts/jquery.nice-select.min.js"></script>
   <!-- slick js -->
   <script src="/javascripts/slick.min.js"></script>
+  <script src="/javascripts/swiper.jquery.js"></script>
   <script src="/javascripts/jquery.counterup.min.js"></script>
   <script src="/javascripts/waypoints.min.js"></script>
-  {{!--
-  <script src="/javascripts/contact.js"></script> --}}
+  <script src="/javascripts/contact.js"></script>
   <script src="/javascripts/jquery.ajaxchimp.min.js"></script>
   <script src="/javascripts/jquery.form.js"></script>
   <script src="/javascripts/jquery.validate.min.js"></script>
   <script src="/javascripts/mail-script.js"></script>
+  <script src="/javascripts/stellar.js"></script>
   <!-- custom js -->
+  <script src="/javascripts/theme.js"></script>
   <script src="/javascripts/custom.js"></script>
 </body>
 
