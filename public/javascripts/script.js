@@ -12,7 +12,7 @@ function addingToCart(productId) {
             if (response.status) {
                 $("#cart-count").html(response.count)
                 swal({
-                    title: "Good!",
+                
                     text: "Added to the Cart!",
                     icon: "success",
                     button: "Ok!",
@@ -34,10 +34,10 @@ function addingTofav(productId) {
             if (response.status) {
                 $("#fav-count").html(response.count)
                 swal({
-                    title: "Good!",
-                    text: "Added to the Cart!",
-                    icon: "success",
-                    button: "Ok!",
+                   
+                    text: "Added to the Favourite",
+                    icon: "success"
+                    
                 });
             }
             else {
