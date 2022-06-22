@@ -1012,9 +1012,15 @@ return new Promise(async (resolve, reject) => {
 
 
 /*--- cancel order  --*/
-const cancelYourOrder = (id,user)=>{
+const cancelYourOrder = async(id,user)=>{
     return new Promise(async(resolve,reject)=>{
         console.log(id,"from ajax");
+        let users = await orderModel.findOne({userId:user.email})
+        console.log(users,"userrr");
+        users.product.forEach(async e=>{
+          await   Addproduct.findOneAndUpdate({_id:e.productId},{$inc :{ stock: +e.quantity}})
+        })
+       
         await orderModel.findOneAndUpdate({userId:user.email,'product._id':id},{$set:{'product.$.status': 'order canceled'}})
         await orderModel.findOneAndUpdate({userId:user.email,'product._id':id},{$set:{'product.$.active': 'false'}})
         resolve()
@@ -1054,8 +1060,6 @@ module.exports = {
     deletingCart,
     productShow,
     getCartCount,
-    // decrimentProducts,
-    // incrementsProducts,
     subTotal,
     totalAmount,
     discount,

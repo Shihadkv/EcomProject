@@ -166,7 +166,6 @@ router.get('/thankyou', async (req, res) => {
 /*---cancel order---*/
 
 router.get('/cancelorder/:id', (req, res) => {
-
   cancelYourOrder(req.params.id, req.session.user).then(() => {
     res.json({ status: true })
   })
