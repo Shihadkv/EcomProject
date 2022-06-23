@@ -873,7 +873,7 @@ const generateRazorpay = (orderId, user) => {
         let isCart = await CartModel.findOne({ userId: user.email })
 
         var options = {
-            amount: isCart.total * 100,
+            amount: isCart.totalAfterDiscount * 100,
             currency: "INR",
             receipt: "" + orderId
         };
