@@ -1,5 +1,6 @@
 
 const Mongoose = require("mongoose");
+const moment = require("moment")
 
 const orderSchema = new Mongoose.Schema({
   userId: {
@@ -67,8 +68,8 @@ const orderSchema = new Mongoose.Schema({
     type: Number,
   },
   modifiedOn: {
-    type: Date,
-    default: Date.now()
+    type: String,
+    default:moment().format("DD/MM/YYYY")
   }
  
 });

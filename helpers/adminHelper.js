@@ -15,6 +15,7 @@ const { doLogin } = require('./userHelper')
 
 
 
+
 module.exports = {
 
     uploadFiles: (products, img1, img2) => {
@@ -259,8 +260,46 @@ module.exports = {
                 resolve()
             }
         })
-    }
+    },
 
+
+    /*---functions for admin dash board --*/
+
+    grandTotal: () => {
+        return new Promise(async (resolve, reject) => {
+            let Income = await orderModel.aggregate([
+                {
+                    $group: {
+                        _id: null,
+                        Totalafter_discount : {
+                            $sum: '$Totalafter_discount'
+                        }
+                    }
+                },
+
+            ])
+            let GrandTotal = Income[0].Totalafter_discount
+            console.log(Income, "income");
+            resolve(GrandTotal)
+        })
+    }
+    ,
+    getAllorder: ()=>{
+        return new Promise(async(resolve,reject)=>{
+           let TotalOrder = await orderModel.find().count()
+           console.log(TotalOrder);
+           resolve(TotalOrder)
+        })
+    }
+    ,
+    getAllusers: ()=>{
+        return new Promise(async(resolve,reject)=>{
+           let TotalUsers= await userModel.find().count()
+           console.log(TotalUsers);
+           resolve(TotalUsers)
+        })
+    }
 }
+
 
 

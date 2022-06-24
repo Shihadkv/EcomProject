@@ -110,13 +110,14 @@ router.get('/favourites', verifyLogin, async (req, res) => {
   let data = await favItems(req.session.user)
   let favcounts = await getFavCount(req.session.user)
   cartCount = await getCartCount(req.session.user)
+  user = req.session.user
   //  let total = await totalAmount(req.session.user)
   //  let subtotal = await subTotal(req.session.user)
   //  let discounts = await discount(req.session.user)
   if (data) {
     let product = data.product
     // console.log(product);
-    res.render('user/favourites', { product, favcounts, cartCount })
+    res.render('user/favourites', {user,product, favcounts, cartCount })
   } else {
     res.render('user/favourites')
   }
@@ -131,19 +132,21 @@ router.get('/deleteFav/:id', (req, res) => {
 
 /*---order page */
 router.get('/orders', verifyLogin, (req, res) => {
+  user = req.session.user
   getOrderDetail(req.session.user).then((order) => {
     console.log(order);
-    res.render('user/orders', { order })
+    res.render('user/orders', { user,order })
   })
 
 })
 
 /* view order */
 router.get('/vieworder/:id', verifyLogin, (req, res) => {
+  user = req.session.user
   getSingleproduct2(req.params.id, req.session.user).then((single) => {
     console.log(single, "single");
 
-    res.render('user/vieworder', { single })
+    res.render('user/vieworder', { user,single })
 
   })
 
@@ -207,12 +210,12 @@ router.get('/getsubcategory/:id' ,verifyLogin, async (req, res) => {
 
 
 router.get('/category', verifyLogin, async (req, res) => {
-
+  user = req.session.user
   featuredProduct().then(async (data) => {
     let subcategory = await findsubcategory()
     let category = await getcategory()
 
-    res.render('user/category', { data, subcategory, category });
+    res.render('user/category', { data,user,subcategory, category });
   })
 })
 
@@ -231,10 +234,11 @@ router.post('/userprofile', (req, res) => {
 
 
 router.get('/AddressSub', verifyLogin, async (req, res) => {
+  user = req.session.user
   let useradres = await getAddress(req.session.user)
 
   if (useradres) {
-    res.render('user/AddressSub', { useradres })
+    res.render('user/AddressSub', {user,useradres })
 
   } else {
     res.redirect('/userprofile')
@@ -276,6 +280,7 @@ router.post('/category', async (req, res) => {
 
 router.get('/checkout/:id', verifyLogin, async (req, res) => {
   let id = req.params.id
+  user = req.session.user
   let data = await cartItems(req.session.user)
   let cartCount = await getCartCount(req.session.user)
   let total = await totalAmount(req.session.user)
@@ -284,7 +289,7 @@ router.get('/checkout/:id', verifyLogin, async (req, res) => {
 
 
   findAddress(id, req.session.user).then((address) => {
-    res.render('user/checkout', { address, cartCount, data, total, subtotal, discounts })
+    res.render('user/checkout', { address,user,cartCount, data, total, subtotal, discounts })
     // res.json({status:true})
 
   })
@@ -329,10 +334,11 @@ router.post('/verifypayment', (req, res) => {
 
 
 router.get('/productShow/:id', async (req, res) => {
+  user = req.session.user
   // favCounts = await getFavCount(req.session.user)
   productShow(req.params.id).then((response) => {
 
-    res.render('user/productShow', { response})
+    res.render('user/productShow', { user,response})
   }).catch((err) => {
     res.redirect('/')
   })
@@ -341,6 +347,7 @@ router.get('/productShow/:id', async (req, res) => {
 
 
 router.get('/cart', verifyLogin, async (req, res) => {
+  user = req.session.user
   let subtotal = await subTotal(req.session.user)
   let total = await totalAmount(req.session.user)
   let data = await cartItems(req.session.user)
@@ -354,7 +361,7 @@ router.get('/cart', verifyLogin, async (req, res) => {
     let product = data.product
 
 
-    res.render('user/cart', { product, cartCount, favCounts, data, total, subtotal, discounts })
+    res.render('user/cart', {user,product, cartCount, favCounts, data, total, subtotal, discounts })
   } else {
     res.render('user/cart', { cartCount, favCounts, discounts })
   }

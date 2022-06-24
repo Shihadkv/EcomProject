@@ -9,6 +9,8 @@ const { uploadFiles } = require('../helpers/adminHelper');
 const async = require('hbs/lib/async');
 const { response, render } = require('../app');
 const orderModel = require('../model/order');
+const moment =  require('moment');
+
 
 
 // const upload = require('express-fileupload');
@@ -24,11 +26,20 @@ const verifyLoginadmin = (req, res, next) => {
   }
 }
 
-router.get('/',verifyLoginadmin, function(req, res, next) {
+router.get('/',verifyLoginadmin, async function (req, res, next) {
    res.header('Cache-control', 'no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0,pre-check=0');
   admin = req.session.adminlogged
    if(req.session.adminlogged){
-    res.render('admin/adminhome',{admin})
+
+   let Total = await adminHelper.grandTotal()
+   console.log(Total);
+   let order = await adminHelper.getAllorder()
+   console.log(order);
+   let users = await adminHelper.getAllusers()
+   console.log(users);
+  
+
+    res.render('admin/adminhome',{admin,Total,order,users})
 
    }
    else{
@@ -84,6 +95,10 @@ router.get('/addProduct',verifyLoginadmin,async(req,res)=>{
 router.get('/orderInfo',verifyLoginadmin,async(req,res)=>{
   const order = await adminHelper.getOrderDetail()
 
+      // let date = moment(order.modifiedOn).format("YYYY/MM/DD");
+      // let time = moment(order.modifiedOn).format("HH:mm:ss");
+      // console.log(date,"its dateee");
+      // order.date=date
   res.render('admin/orderInfo',{order})
 })
 
@@ -228,6 +243,9 @@ router.post('/brand',(req,res)=>{
     res.redirect('/admin/brand')
   })
 })
+
+
+
 
 /**for salesss */
 
