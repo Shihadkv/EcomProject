@@ -356,6 +356,7 @@ router.post('/getData',async(req,res)=>{
 router.get('/logout', (req, res) => {
   req.session.adminlogged = false
   req.session.destroy();
+  console.log("distroy");
   res.redirect('/admin/adminLogin')
 })
 
