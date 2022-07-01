@@ -465,7 +465,7 @@ router.post('/verification', (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.session.loggedIn = false
- 
+  req.session.destroy();
   res.redirect('/')
 })
 module.exports = router;
