@@ -63,7 +63,8 @@ router.post('/login', (req, res) => {
 
 
 router.get('/signup', (req, res) => {
-  res.render('user/signup')
+  
+  res.render('user/signup',{error: req.session.signeupErr})
 })
 
 
@@ -428,6 +429,7 @@ router.get('/resetpswd', userHelper.forgetPasswordLoad)
 router.post('/resetpswd', userHelper.resetPassword)
 
 router.post('/signup', (req, res) => {
+  console.log("kokokokokoooiii");
   dosignup(req.body).then((response) => {
     req.session.user = req.body
     req.session.userEmail = req.body.email
@@ -437,6 +439,7 @@ router.post('/signup', (req, res) => {
     res.redirect('/verification')
   })
     .catch(() => {
+      req.session.signupErr = error.msg
       res.redirect('/signup')
     })
 })
@@ -462,7 +465,7 @@ router.post('/verification', (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.session.loggedIn = false
-  req.session.destroy();
+ 
   res.redirect('/')
 })
 module.exports = router;

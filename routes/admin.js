@@ -346,17 +346,11 @@ router.post('/getData',async(req,res)=>{
  
    res.json({dateArray,totalArray,brandArray,sumArray,orderCount,Sales,successPayment})
   })
- 
- 
-
-
-
-
 
 router.get('/logout', (req, res) => {
   req.session.adminlogged = false
-  req.session.destroy();
-  console.log("distroy");
+
+
   res.redirect('/admin/adminLogin')
 })
 

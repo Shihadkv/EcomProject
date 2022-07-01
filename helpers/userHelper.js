@@ -36,31 +36,43 @@ var instance = new Razorpay({
 
 
 const dosignup = (data) => {
+    console.log(data);
+  
+   
     return new Promise(async (resolve, reject) => {
-        const otpCode = Math.floor(1000 + Math.random() * 9000)
-        console.log(otpCode);
-        let transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'shihad530@gmail.com',
-                pass: 'mdfvpgowslqrqacj',
-            }
-        })
-        let otpCode1 = {
-            from: 'shihad530@gmail.com',
-            to: data.email,
-            subject: "mail using node mailer",
-            html: `<h3> Here is ${data.name} </h3>
-                    <h1>Welcome to our store and your OTP code is - ${otpCode}</h1>`
 
+        let email =  await userModel.findOne({email:data.email})
+        console.log(email,"emaillllll");
+        if(email){
+            reject({msg:"email is already exist"})
+        }else
+        {
+            const otpCode = Math.floor(1000 + Math.random() * 9000)
+            console.log(otpCode);
+            let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'shihad530@gmail.com',
+                    pass: 'mdfvpgowslqrqacj',
+                }
+            })
+            let otpCode1 = {
+                from: 'shihad530@gmail.com',
+                to: data.email,
+                subject: "mail using node mailer",
+                html: `<h3> Here is ${data.name} </h3>
+                        <h1>Welcome to our store and your OTP code is - ${otpCode}</h1>`
+    
+            }
+            transporter.sendMail(otpCode1, function (err, info) {
+                if (err) reject({ msg: "messageis not send" })
+                console.log(info)
+                console.log("mail send succesfully");
+                resolve({ msg: "succes", otpCode })
+            })
         }
-        transporter.sendMail(otpCode1, function (err, info) {
-            if (err) reject({ msg: "messageis not send" })
-            console.log(info)
-            console.log("mail send succesfully");
-            resolve({ msg: "succes", otpCode })
-        })
     })
+    
 }
 
 //optverification
