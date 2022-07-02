@@ -53,7 +53,7 @@ const dosignup = (data) => {
                 service: 'gmail',
                 auth: {
                     user: 'shihad530@gmail.com',
-                    pass: 'mdfvpgowslqrqacj',
+                    pass: 'yhufegoqmdhqslpb',
                 }
             })
             let otpCode1 = {
@@ -66,7 +66,7 @@ const dosignup = (data) => {
             }
             transporter.sendMail(otpCode1, function (err, info) {
                 if (err) reject({ msg: "messageis not send" })
-                console.log(info)
+             
                 console.log("mail send succesfully");
                 resolve({ msg: "succes", otpCode })
             })

@@ -62,10 +62,6 @@ router.post('/login', (req, res) => {
 })
 
 
-router.get('/signup', (req, res) => {
-  
-  res.render('user/signup',{error: req.session.signeupErr})
-})
 
 
 router.get('/AddtoCart/:id', verifyLogin, (req, res) => {
@@ -428,8 +424,15 @@ router.get('/resetpswd', userHelper.forgetPasswordLoad)
 
 router.post('/resetpswd', userHelper.resetPassword)
 
+
+
+router.get('/signup', (req, res) => {
+  
+  res.render('user/signup',{error: req.session.signeupErr})
+})
+
+
 router.post('/signup', (req, res) => {
-  console.log("kokokokokoooiii");
   dosignup(req.body).then((response) => {
     req.session.user = req.body
     req.session.userEmail = req.body.email
@@ -438,14 +441,15 @@ router.post('/signup', (req, res) => {
     console.log(req.session.otp);
     res.redirect('/verification')
   })
-    .catch(() => {
-      req.session.signupErr = error.msg
+    .catch((error) => {
+       req.session.signupErr = error.msg
+       console.log(error.msg);
       res.redirect('/signup')
     })
 })
 
 router.get('/verification', (req, res) => {
-  console.log('hiiii');
+  console.log('its get verification');
   const data = req.session.userEmail
   res.render('user/verification', { data })
 })
