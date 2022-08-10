@@ -47,11 +47,14 @@ router.get('/login', (req, res) => {
 
 
 router.post('/login', (req, res) => {
+
   doLogin(req.body).then((user) => {
+
     req.session.user = user
     req.session.loggedIn = true;
 
     console.log(req.session.user);
+
     res.redirect('/')
 
   })
