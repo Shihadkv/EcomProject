@@ -125,13 +125,11 @@ const doLogin = (data) => {
         console.log(user);
         if (user) {
               if(user.status){
-                console.log("faazz");
+                console.log("nabelll");
                 bcrypt.compare(data.password, user.password).then((comp) => {
                     if (comp) {
                         console.log('login is succesfull');
-                        // response.user = user
-                        // response.status = true
-                        resolve(user)
+                        
                     } else {
                         console.log('login failed');
                         reject({ status: false, msg: "password is incorrect" })
