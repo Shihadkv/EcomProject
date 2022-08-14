@@ -171,7 +171,7 @@ const sendPasswordResetMail = async (name, email, tocken) => {
             to: email,
             subject: "Reset Password",
             text: "just random texts ",
-            html: '<p>Hi ' + name + ' click <a href ="http://localhost:3000/resetpswd?token=' + tocken + '"> here to </a> to reset your password</p>'
+            html: '<p>Hi ' + name + ' click <a href ="http://bhfashion.live/resetpswd?token=' + tocken + '"> here to </a> to reset your password</p>'
         }
         mailTransporter.sendMail(mailDetails, (err, Info) => {
             if (err) {
