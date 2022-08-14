@@ -48,12 +48,13 @@ const dosignup = (data) => {
         }else
         {
             const otpCode = Math.floor(1000 + Math.random() * 9000)
+            console.log("otpppp");
             console.log(otpCode);
             let transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
                     user: 'shihad530@gmail.com',
-                    pass: 'yhufegoqmdhqslpb',
+                    pass: 'trtvxdectktfpqvn',
                 }
             })
             let otpCode1 = {
@@ -157,7 +158,7 @@ const sendPasswordResetMail = async (name, email, tocken) => {
             secure: true,
             auth: {
                 user: "shihad530@gmail.com",
-                pass: "mdfvpgowslqrqacj"
+                pass: "trtvxdectktfpqvn"
             },
             tls: {
                 rejectUnauthorized: false
