@@ -18,7 +18,7 @@ NOTE: Please read the RUN section before opening an issue.
 
 ## Demo
 
-![screenshot](bhfashion sc)
+![screenshot](bhfashionsc.png)
 
 The application is deployed to AWS and can be accessed through the following link:
 
