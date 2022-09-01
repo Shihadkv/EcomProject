@@ -26,8 +26,6 @@ The application is deployed to AWS and can be accessed through the following lin
 
 The website resembles a real store and you can add products to your cart and wishlist and pay for them. If you want to try the checkout process, you can use the dummy card number/ upi/ Internet Bankinng provided by Razorpay for testing . Please <u><b>DO NOT</b></u> provide real card number and data.
 
-In order to access the vendor panel on "/vendor" you need to signup and login.
-
 In order to access the admin panel on "/admin" you need to provide the admin email and password.
 
 
@@ -44,6 +42,8 @@ To run this application, you have to set your own environmental variables. For s
 - TWILIO_ACCOUNT_SID: This is the Twilio accountSID (string).
 
 - TWILIO_AUTH_TOKEN: This is the Twilio AuthToken (string).
+
+- NODEMAILER_PASSWD:This is the NodeMailer password(string)
 
 - PORT: Specify the port Number
 
@@ -63,6 +63,7 @@ The application is built with:
 - JQuery
 - Razorpay
 - SweetAlert
+- NodeMailer
 
 Deployed in AWS EC2 instance with Nginx reverse proxy
 
