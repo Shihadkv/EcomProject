@@ -207,7 +207,6 @@ const forgetVerify = async (req, res) => {
         if (userData) {
             const randomString = randomstring.generate();
             const updatedData = await userModel.updateOne({ email: email }, { $set: { token: randomString } });
-
             sendPasswordResetMail(userData.name, userData.email, randomString)
             res.redirect('/forgetpswd')
         } else {
